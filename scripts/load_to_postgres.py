@@ -3,7 +3,7 @@ import glob
 import psycopg2
 from datetime import datetime
 
-RAW_DATA_PATH = "data/raw/*.json"
+RAW_DATA_PATH = "/opt/airflow/data/raw/*.json"
 
 DB_CONFIG = {
     "host": "postgres",

@@ -1,0 +1,41 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  airflow-webserver:
+    image: apache/airflow:2.6.3
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      _PIP_ADDITIONAL_REQUIREMENTS: great_expectations psycopg2-binary pandas requests
+
+    ports:
+      - "8080:8080"
+    command: webserver
+    volumes:
+      - .:/opt/airflow
+
+  airflow-scheduler:
+    image: apache/airflow:2.6.3
+    depends_on:
+      - airflow-webserver
+    environment:
+      AIRFLOW__CORE__EXECUTOR: "LocalExecutor"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      _PIP_ADDITIONAL_REQUIREMENTS: great_expectations psycopg2-binary pandas requests
+
+    command: scheduler
+    volumes:
+      - .:/opt/airflow

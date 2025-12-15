@@ -36,9 +36,13 @@ def extract_weather_data():
         "ingested_at_utc": datetime.utcnow().isoformat()
     }
 
-    os.makedirs("data/raw", exist_ok=True)
+    BASE_DIR = "/opt/airflow"
+    RAW_DIR = f"{BASE_DIR}/data/raw"
+    os.makedirs(RAW_DIR, exist_ok=True)
 
-    file_path = f"data/raw/weather_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+
+    file_path = f"{RAW_DIR}/weather_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+
 
     with open(file_path, "w") as f:
         json.dump(weather_record, f, indent=4)
