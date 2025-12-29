@@ -13,7 +13,7 @@ with DAG(
     dag_id="weather_etl_pipeline",
     default_args=default_args,
     description="End-to-end Weather ETL with Data Quality",
-    schedule_interval="@daily",
+    schedule_interval="@hourly",
     start_date=datetime(2025, 1, 1),
     catchup=False,
 ) as dag:

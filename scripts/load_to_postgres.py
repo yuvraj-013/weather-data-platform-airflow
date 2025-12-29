@@ -14,6 +14,24 @@ DB_CONFIG = {
     "user": "airflow",
     "password": "airflow"
 }
+CREATE_TABLE_SQL = """
+CREATE TABLE IF NOT EXISTS weather_fact (
+    city TEXT,
+    temperature FLOAT,
+    humidity INT,
+    wind_speed FLOAT,
+    weather TEXT,
+    recorded_at TIMESTAMP
+);
+"""
+insert_sql = """
+    INSERT INTO weather_fact (
+        city, latitude, longitude, temperature_celsius,
+        windspeed, winddirection, weathercode,
+        timestamp_utc, ingested_at_utc
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+"""
 
 def load_weather_to_postgres():
     files = glob.glob(RAW_DATA_PATH)
@@ -26,20 +44,12 @@ def load_weather_to_postgres():
 
     conn = psycopg2.connect(**DB_CONFIG)
     cursor = conn.cursor()
-
-    insert_sql = """
-        INSERT INTO weather_fact (
-            city, latitude, longitude, temperature_celsius,
-            windspeed, winddirection, weathercode,
-            timestamp_utc, ingested_at_utc
-        )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
+    cursor.execute(CREATE_TABLE_SQL)
 
     for file_path in files:
         with open(file_path) as f:
             data = json.load(f)
-
+	
         cursor.execute(
             insert_sql,
             (

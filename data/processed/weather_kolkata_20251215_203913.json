@@ -1,0 +1,11 @@
+{
+    "city": "Kolkata",
+    "latitude": 22.5726,
+    "longitude": 88.3639,
+    "temperature_celsius": 16.1,
+    "windspeed": 5.0,
+    "winddirection": 330,
+    "weathercode": 0,
+    "timestamp_utc": "2025-12-15T20:30",
+    "ingested_at_utc": "2025-12-15T20:39:13.232462"
+}

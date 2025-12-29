@@ -1,0 +1,11 @@
+{
+    "city": "Delhi",
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "temperature_celsius": 13.3,
+    "windspeed": 5.6,
+    "winddirection": 310,
+    "weathercode": 0,
+    "timestamp_utc": "2025-12-15T21:00",
+    "ingested_at_utc": "2025-12-15T21:05:12.045865"
+}

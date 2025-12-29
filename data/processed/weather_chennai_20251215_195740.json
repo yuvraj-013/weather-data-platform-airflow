@@ -1,0 +1,11 @@
+{
+    "city": "Chennai",
+    "latitude": 13.0827,
+    "longitude": 80.2707,
+    "temperature_celsius": 23.0,
+    "windspeed": 4.1,
+    "winddirection": 345,
+    "weathercode": 2,
+    "timestamp_utc": "2025-12-15T19:45",
+    "ingested_at_utc": "2025-12-15T19:57:40.482104"
+}

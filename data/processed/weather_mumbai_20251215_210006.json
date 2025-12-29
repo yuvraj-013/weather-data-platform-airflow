@@ -1,0 +1,11 @@
+{
+    "city": "Mumbai",
+    "latitude": 19.076,
+    "longitude": 72.8777,
+    "temperature_celsius": 24.9,
+    "windspeed": 8.1,
+    "winddirection": 69,
+    "weathercode": 0,
+    "timestamp_utc": "2025-12-15T21:00",
+    "ingested_at_utc": "2025-12-15T21:00:06.143167"
+}
